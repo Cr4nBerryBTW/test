@@ -2,7 +2,6 @@
 
 use app\models\Device;
 use kartik\select2\Select2;
-use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\SerialColumn;
@@ -26,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?php Pjax::begin(); ?>
-    <?php  // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 
 
@@ -40,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => DataColumn::class,
                 'attribute' => 'Store',
                 'value' => function ($device) {
-                    return $device->store->name;
+                    return $device->store->name != null ? $device->store->name : '(не задан)' ;
                 },
                 'filter' => Select2::widget([
                     'model' => $searchModel,

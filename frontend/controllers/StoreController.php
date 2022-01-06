@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use app\models\Store;
+use frontend\models\DeviceSearch;
 use frontend\models\StoreSearch;
 use Yii;
 use yii\db\StaleObjectException;
@@ -77,6 +78,7 @@ class StoreController extends Controller
         if (Yii::$app->request->isAjax){
             return $this->renderAjax('view', [
                 'model' => $this->findModel($id),
+
             ]);
         }else{
             return $this->render('view', [

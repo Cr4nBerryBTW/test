@@ -15,6 +15,7 @@ class m220104_135116_create_device_table extends Migration
         $this->createTable('{{%device}}', [
             'id' => $this->primaryKey(),
             'serial_number' => $this->string()->notNull()->unique(),
+            'store_id' => $this->integer()->null(),
             'date' => $this->date()->notNull(),
         ]);
     }

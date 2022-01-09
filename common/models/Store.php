@@ -1,30 +1,29 @@
 <?php
 
-namespace app\models;
+namespace common\models;
 
-use Yii;
+
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\db\Expression;
-use yii\helpers\ArrayHelper;
+
 
 /**
- * This is the model class for table "device".
+ * This is the model class for table "store".
  *
  * @property int $id
- * @property string $serial_number
- * @property int|null $store_id
+ * @property string $name
  * @property string $date
  */
-class Device extends ActiveRecord
+class Store extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName(): string
     {
-        return 'device';
+        return 'store';
     }
 
     /**
@@ -33,10 +32,9 @@ class Device extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['serial_number'], 'required'],
-            [['serial_number'], 'string', 'max' => 255],
-            [['serial_number'], 'unique'],
-            [['store_id'], 'integer']
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['name'], 'unique'],
         ];
     }
 
@@ -59,21 +57,14 @@ class Device extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'serial_number' => 'Serial Number',
-            'store_id' => 'Store ID',
+            'name' => 'Name',
             'date' => 'Date',
         ];
     }
 
-    public function getStore(): ActiveQuery
+    public function getDevices(): ActiveQuery
     {
-        return $this->hasOne(Store::class, ['id' => 'store_id']);
-    }
-
-    public static function getAllStores(): array
-    {
-        $stores = Store::find()->all();
-        return ArrayHelper::map($stores,'id' , 'name');
+        return $this->hasMany(Device::class, ['store_id' => 'id']);
     }
 
 }

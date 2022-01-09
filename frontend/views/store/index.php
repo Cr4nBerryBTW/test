@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Store;
+use common\models\Store;
 use yii\bootstrap4\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;

@@ -1,7 +1,9 @@
 <?php
 
-use app\models\Device;
+use common\models\Device;
+use common\models\Store;
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\grid\SerialColumn;
@@ -9,6 +11,7 @@ use kartik\grid\ActionColumn;
 use kartik\grid\GridView;
 use kartik\grid\DataColumn;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\DeviceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -35,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => SerialColumn::class],
             'serial_number',
+
             [
                 'class' => DataColumn::class,
                 'attribute' => 'Store',
@@ -44,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => Select2::widget([
                     'model' => $searchModel,
                     'attribute' => 'store_id',
-                    'data' => Device::getAllStores(),
+                    'data' => ArrayHelper::map(Store::find()->all(),'id' , 'name'),
                     'options' => ['placeholder' => 'Select a store ...', 'multiple' => true],
                     'pluginOptions' => [
                         'tokenSeparators' => [',', ' '],

@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use app\models\Store;
+use common\models\Store;
 use frontend\models\DeviceSearch;
 use frontend\models\StoreSearch;
 use Yii;
@@ -99,7 +99,7 @@ class StoreController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['store/index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -122,7 +122,7 @@ class StoreController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['store/index']);
         }
 
         return $this->render('update', [

@@ -4,8 +4,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Device;
-use yii\helpers\ArrayHelper;
+use common\models\Device;
 
 /**
  * DeviceSearch represents the model behind the search form of `app\models\Device`.
@@ -63,7 +62,7 @@ class DeviceSearch extends Device
             'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'serial_number', $this->serial_number]);
+        $query->andFilterWhere(['in', 'serial_number', $this->serial_number]);
         $query->andFilterWhere(['in', 'store_id', $this->store_id]);
         return $dataProvider;
     }

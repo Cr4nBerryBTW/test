@@ -2,9 +2,8 @@
 
 namespace frontend\controllers;
 
-use app\models\Device;
+use common\models\Device;
 use frontend\models\DeviceSearch;
-use Yii;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -67,18 +66,6 @@ class DeviceController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single Device model.
-     * @param int $id ID
-     * @return string
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView(int $id): string
-    {
-            return $this->render('view', [
-                'model' => $this->findModel($id),
-            ]);
-    }
 
     /**
      * Creates a new Device model.
@@ -92,7 +79,7 @@ class DeviceController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
 
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['device/index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -116,7 +103,7 @@ class DeviceController extends Controller
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['device/index']);
         }
 
         return $this->render('update', [

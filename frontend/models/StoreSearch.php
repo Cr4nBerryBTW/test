@@ -4,7 +4,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Store;
+use common\models\Store;
 
 /**
  * StoreSearch represents the model behind the search form of `app\models\Store`.
@@ -61,7 +61,7 @@ class StoreSearch extends Store
             'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['in', 'name', $this->name]);
 
         return $dataProvider;
     }

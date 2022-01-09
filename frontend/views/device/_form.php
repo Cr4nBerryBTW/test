@@ -1,12 +1,13 @@
 <?php
 
-use app\models\Device;
+use common\models\Store;
 use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Device */
+/* @var $model common\models\Device */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -17,7 +18,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'serial_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'store_id')->widget(Select2::class, [
-        'data' => Device::getAllStores(),
+        'data' => ArrayHelper::map(Store::find()->all(),'id' , 'name'),
         'options' => ['placeholder' => 'Select a store ...'],
         'pluginOptions' => [
             'allowClear' => true,

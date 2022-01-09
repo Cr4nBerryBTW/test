@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Device;
+
 
 /**
  * DeviceSearch represents the model behind the search form of `app\models\Device`.

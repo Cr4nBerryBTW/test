@@ -3,7 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\Device;
-use frontend\models\DeviceSearch;
+use common\models\DeviceSearch;
 use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
